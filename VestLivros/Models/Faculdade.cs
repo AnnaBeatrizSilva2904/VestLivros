@@ -10,7 +10,8 @@ public class Faculdade
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [Required]
-    [StringLength (100, ErrorMessage = "Informe a faculdade! (pode ser somente Unicamp ou USP)")]
+    [Display(Name= "NomeFaculdade")]
+    [Required (ErrorMessage = "Informe a faculdade! (pode ser somente Unicamp ou USP)")]
+    [StringLength (100)]
     public string FaculdadeNome { get; set; }
 }

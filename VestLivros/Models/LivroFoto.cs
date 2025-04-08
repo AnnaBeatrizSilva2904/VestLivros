@@ -10,7 +10,7 @@ public class LivroFoto
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [Display(Name = "Livro")]
+    [Display(Name = "Livro")] // indica o nome que será exibido para o campo //
     [Required (ErrorMessage = "Por favor informe o livro!")]
     public int LivroId { get; set; }
     [ForeignKey ("LivroId")]
