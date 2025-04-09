@@ -7,7 +7,7 @@ namespace VestLivros.Data;
 
 public class AppDbContext : IdentityDbContext<Usuario>
 {
-    public AppDbContextt(DbContextOptions<AppDbContext> options) : base(options)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
 
@@ -15,7 +15,7 @@ public class AppDbContext : IdentityDbContext<Usuario>
     public DbSet<LivroFoto> LivroFotos { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Faculdade> Faculdades { get; set; }
-    public DbSet<Ano> Anos { get; set; }
+    public DbSet<Vestibular> Vestibulares { get; set; }
     public DbSet<LivroVestibular> LivroVestibulares { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)

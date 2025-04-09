@@ -5,6 +5,7 @@ namespace VestLivros.Models;
 
 public class Usuario : IdentityUser
 {
+    [Display (Name = "Nome")]
     [Required (ErrorMessage = "Por favor informe seu nome")]
     [StringLength (60, ErrorMessage = "O nome deve possuir no máximo 60 caracteres")]
     public string Nome { get; set; }
