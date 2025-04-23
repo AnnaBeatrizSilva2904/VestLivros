@@ -14,10 +14,6 @@ public class Livro
     [StringLength(50, ErrorMessage = "O Nome deve possuir no máximo 50 carateres")]
     public string Nome { get; set; }
 
-    [Required(ErrorMessage = "A foto do livro é obrigatória!!!")]
-    [StringLength(300)]
-    public string Foto { get; set; }
-
     [Required]
     [StringLength(3000)]
     public string Resumo { get; set; }
