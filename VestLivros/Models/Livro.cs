@@ -23,10 +23,6 @@ public class Livro
     public string AnaliseCritica { get; set; }
 
     [Required]
-    [StringLength (60000, ErrorMessage = "A análise literária é obrigatória!")]
-    public string AnaliseLiteraria { get; set; }
-
-    [Required]
     [StringLength (90000, ErrorMessage = "O contexto histórico e social é um campo obrigatório")]
     public string Contexto { get; set; }
 }
