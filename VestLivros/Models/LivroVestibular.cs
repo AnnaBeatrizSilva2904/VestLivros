@@ -7,19 +7,19 @@ namespace VestLivros.Models;
 [Table ("livroVestibular")]
 public class LivroVestibular
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
 
-    [Display (Name = "Vestibular")]
-    [Required (ErrorMessage = "Por favor informe o nome do vestibular!")]
+    [Key, Column(Order = 1)]
     public int VestibularId { get; set; }
     [ForeignKey ("VestibularId")]
     public Vestibular Vestibular { get; set; }
     
-    [Display (Name = "Livro")]
-    [Required (ErrorMessage = "Por favor informe o livro")]
+    [Key, Column(Order = 2)]
     public int LivroId { get; set; }
     [ForeignKey ("LivroId")]
     public Livro Livro { get; set; }
+    
+    [Key, Column(Order = 3)]
+    public int FaculdadeId { get; set; }
+    [ForeignKey ("FaculdadeId")]
+    public Faculdade Faculdade { get; set; }
 }

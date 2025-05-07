@@ -12,10 +12,4 @@ public class Vestibular
 
     [Required]
     public string Ano { get; set; }
-  
-    [Display (Name = "Faculdade")]
-    [Required (ErrorMessage = "Por favor informe a faculdade!")]
-    public int FaculdadeId { get; set; }
-    [ForeignKey ("FaculdadeId")]
-    public Faculdade Faculdade { get; set; }
 }

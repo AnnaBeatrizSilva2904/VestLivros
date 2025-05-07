@@ -32,6 +32,9 @@ public class AppDbContext : IdentityDbContext<Usuario>
         builder.Entity<IdentityUserToken<string>>().ToTable("usuario_token");
         builder.Entity<IdentityRoleClaim<string>>().ToTable("perfil_regra");
         #endregion
+
+        builder.Entity<LivroVestibular>()
+            .HasKey(ri => new { ri.VestibularId, ri.LivroId, ri.FaculdadeId });
     }
     
 }

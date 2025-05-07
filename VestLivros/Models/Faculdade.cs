@@ -11,7 +11,7 @@ public class Faculdade
     public int Id { get; set; }
 
     [Display(Name= "NomeFaculdade")]
-    [Required (ErrorMessage = "Informe a faculdade! (pode ser somente Unicamp ou USP)")]
+    [Required (ErrorMessage = "Informe a faculdade!")]
     [StringLength (100)]
     public string FaculdadeNome { get; set; }
 }

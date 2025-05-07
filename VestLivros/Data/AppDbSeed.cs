@@ -14,9 +14,8 @@ public class AppDbSeed
         builder.Entity<Faculdade>().HasData(faculdades);
 
         List<Vestibular> vestibulares = new() {
-            new Vestibular { Id = 1, FaculdadeId = 1, Ano = "2026"},
-            new Vestibular { Id = 1, FaculdadeId = 2, Ano = "2026"},
-            new Vestibular { Id = 2, FaculdadeId = 2,Ano = "2027"},
+            new Vestibular { Id = 1, Ano = "2026"},
+            new Vestibular { Id = 2, Ano = "2027"},
             new Vestibular { Id = 3, Ano = "2028"},
             new Vestibular { Id = 4, Ano = "2029"},
         };
@@ -24,7 +23,7 @@ public class AppDbSeed
 
         List<Livro> livros = new List<Livro> {
             // Livros de 2026 - somente haverá informações do que foi colocado na Model //
-            new Livro { Id = 1, Nome = "As meninas", Resumo = "Num pensionato de freiras paulistano, em 1973, três jovens universitárias começam sua vida adulta de maneiras bem diversas. A burguesa Lorena, filha de família quatrocentona, nutre veleidades artísticas e literárias. Namora um homem casado, mas permanece virgem. A drogada Ana Clara, linda como uma modelo, divide-se entre o noivo rico e o amante traficante. Lia, por fim, milita num grupo da esquerda armada e sofre pelo namorado preso. As meninas colhe essas três criaturas em pleno movimento, num momento de impasse em suas vidas. Transitando com notável desenvoltura da primeira pessoa narrativa para a terceira, assumindo ora o ponto de vista de uma ora de outra das protagonistas, Lygia Fagundes Telles constrói um romance pulsante e polifônico, que capta como poucos o espírito daquela época conturbada e de vertiginosas transformações, sobretudo comportamentais.", AnaliseCritica = "Lorem Ipsum"},
+            new Livro { Id = 1, Nome = "As meninas", Resumo = "Num pensionato de freiras paulistano, em 1973, três jovens universitárias começam sua vida adulta de maneiras bem diversas. A burguesa Lorena, filha de família quatrocentona, nutre veleidades artísticas e literárias. Namora um homem casado, mas permanece virgem. A drogada Ana Clara, linda como uma modelo, divide-se entre o noivo rico e o amante traficante. Lia, por fim, milita num grupo da esquerda armada e sofre pelo namorado preso. As meninas colhe essas três criaturas em pleno movimento, num momento de impasse em suas vidas. Transitando com notável desenvoltura da primeira pessoa narrativa para a terceira, assumindo ora o ponto de vista de uma ora de outra das protagonistas, Lygia Fagundes Telles constrói um romance pulsante e polifônico, que capta como poucos o espírito daquela época conturbada e de vertiginosas transformações, sobretudo comportamentais.", AnaliseCritica = "Lorem Ipsum", Contexto = "Lorem Ipsum"},
             new Livro { Id = 2, Nome = "A casa velha", Resumo = "A Casa Velha, de Machado de Assis, é um romance publicado em 1885 e ambientado no Rio de Janeiro do século XIX. A história foca nas relações familiares e sociais, acompanhando os conflitos de valores entre as gerações e as complexidades das relações humanas. No centro da trama está a casa da família Aguiar, uma residência que simboliza tradição e decadência. A narrativa aborda as tensões entre o velho e o novo, explorando temas como hipocrisia, desejo reprimido e poder. Personagens complexos revelam o caráter da sociedade brasileira da época, enquanto o autor utiliza uma crítica sutil ao comportamento humano. A obra traz reflexões sobre moralidade, memória e identidade, sendo uma das muitas contribuições de Machado de Assis à literatura brasileira.", AnaliseCritica = "Lorem Ipsum", Contexto = "Lorem Ipsum"},
             new Livro { Id = 3, Nome = "A paixão segundo G.H", Resumo = "A Paixão Segundo GH de Clarice Lispector é um livro que narra a jornada existencial da protagonista, GH, uma mulher de classe alta que, ao limpar o quarto da empregada doméstica que pediu demissão, encontra um evento surpreendente: uma barata dentro de um armário. Essa descoberta aparentemente simples leva GH a confrontar questões profundas sobre a existência, a natureza humana e sua própria identidade. Ao longo da narrativa, GH mergulha em reflexões filosóficas e metafísicas, explorando sentimentos de desconstrução e reconstrução de si mesma. A barata torna-se um símbolo poderoso, representando o desconhecido, o grotesco e, paradoxalmente, a universalidade da vida. A obra desafia o leitor a refletir sobre os dilemas da consciência, o silêncio e o vazio, buscando um entendimento mais profundo da própria existência. Clarice Lispector utiliza uma linguagem poética e introspectiva para criar uma narrativa imersiva e rica em nuances. O livro é considerado uma das obras-primas da literatura brasileira e continua fascinando leitores por sua profundidade e intensidade emocional.", AnaliseCritica = "Lorem Ipsum", Contexto = "Lorem Ipsum"},
             new Livro { Id = 4, Nome = "A vida não é útil", Resumo = "A Vida Não É Útil, do líder indígena Ailton Krenak, é uma coletânea de ensaios que reflete sobre a crise ambiental, cultural e espiritual da humanidade. Publicada em 2020, a obra é um convite para repensarmos nosso estilo de vida e nossa relação com a Terra. Krenak critica a ideia de progresso e a busca incessante por crescimento, que desconsidera os limites da natureza e desumaniza as pessoas. Ele propõe uma visão mais conectada e harmoniosa, inspirada na cosmovisão indígena, onde a vida é valiosa por si mesma, sem a necessidade de utilitarismo. O livro é um chamado à consciência e à reflexão, incentivando a valorização da diversidade e a construção de um futuro mais sustentável. ", AnaliseCritica = "Lorem Ipsum", Contexto = "Lorem Ipsum"},
@@ -82,6 +81,53 @@ public class AppDbSeed
         };
         builder.Entity<LivroFoto>().HasData(livroFotos);
 
+        List<LivroVestibular> livroVestibulares = new List<LivroVestibular>
+        {
+            new LivroVestibular { VestibularId = 1, LivroId = 22, FaculdadeId = 1 }, // vestibular id = ano do vestibular; livro id = nome do livro; faculdade id = 1 unicamp e 2 USP
+            new LivroVestibular { VestibularId = 1, LivroId = 24, FaculdadeId = 1 }, // Olhos d'água
+            new LivroVestibular { VestibularId = 1, LivroId = 4, FaculdadeId = 1 }, // A vida não é útil
+            new LivroVestibular { VestibularId = 1, LivroId = 2, FaculdadeId = 1 }, // casa velha
+            new LivroVestibular { VestibularId = 1, LivroId = 25, FaculdadeId = 1 }, // vida e morte de M.J
+            new LivroVestibular { VestibularId = 1, LivroId = 19, FaculdadeId = 1 }, // no seu pescoço
+            new LivroVestibular { VestibularId = 1, LivroId = 17, FaculdadeId = 1 }, // morangos mofados
+            new LivroVestibular { VestibularId = 1, LivroId = 10, FaculdadeId = 1 }, // canções escolhidas
+            new LivroVestibular { VestibularId = 1, LivroId = 6, FaculdadeId = 1 }, // alice no país das maravilhas
+            new LivroVestibular { VestibularId = 1, LivroId = 23, FaculdadeId = 2 }, // opúsculo humanitário
+            new LivroVestibular { VestibularId = 1, LivroId = 18, FaculdadeId = 2 }, // nebulosas
+            new LivroVestibular { VestibularId = 1, LivroId = 16, FaculdadeId = 2 }, // memorias de martha
+            new LivroVestibular { VestibularId = 1, LivroId = 8, FaculdadeId = 2 }, // caminho de pedras
+            new LivroVestibular { VestibularId = 1, LivroId = 21, FaculdadeId = 2 }, // o cristo cigano
+            new LivroVestibular { VestibularId = 1, LivroId = 1, FaculdadeId = 2 }, // as meninas
+            new LivroVestibular { VestibularId = 1, LivroId = 7, FaculdadeId = 2 }, // balada de amor ao vento
+            new LivroVestibular { VestibularId = 1, LivroId = 9, FaculdadeId = 2 }, // canção para ninar menino grande
+            new LivroVestibular { VestibularId = 1, LivroId = 5, FaculdadeId = 2 }, // a visão das plantas
+            new LivroVestibular { VestibularId = 2, LivroId = 23, FaculdadeId = 2 }, // opúsculo humanitário
+            new LivroVestibular { VestibularId = 2, LivroId = 18, FaculdadeId = 2 }, // nebulosas
+            new LivroVestibular { VestibularId = 2, LivroId = 16, FaculdadeId = 2 }, // memorias de martha
+            new LivroVestibular { VestibularId = 2, LivroId = 8, FaculdadeId = 2 }, // caminho de pedras
+            new LivroVestibular { VestibularId = 2, LivroId = 3, FaculdadeId = 2 }, // a paixão segundo G.H
+            new LivroVestibular { VestibularId = 2, LivroId = 7, FaculdadeId = 2 }, // balada de amor ao vento
+            new LivroVestibular { VestibularId = 2, LivroId = 9, FaculdadeId = 2 }, // canção para ninar menino grande
+            new LivroVestibular { VestibularId = 2, LivroId = 5, FaculdadeId = 2 }, // a visão das plantas
+            new LivroVestibular { VestibularId = 3, LivroId = 11, FaculdadeId = 2 }, // conselhos a minha filha
+            new LivroVestibular { VestibularId = 3, LivroId = 18, FaculdadeId = 2 }, // nebulosas
+            new LivroVestibular { VestibularId = 3, LivroId = 16, FaculdadeId = 2 }, // memorias de martha
+            new LivroVestibular { VestibularId = 3, LivroId = 15, FaculdadeId = 2 }, // joão miguel
+            new LivroVestibular { VestibularId = 3, LivroId = 3, FaculdadeId = 2 }, // a paixão segundo G.H
+            new LivroVestibular { VestibularId = 3, LivroId = 7, FaculdadeId = 2 }, // balada de amor ao vento
+            new LivroVestibular { VestibularId = 3, LivroId = 9, FaculdadeId = 2 }, // canção para ninar menino grande
+            new LivroVestibular { VestibularId = 3, LivroId = 5, FaculdadeId = 2 }, // a visão das plantas
+            new LivroVestibular { VestibularId = 4, LivroId = 11, FaculdadeId = 2 }, // conselhos a minha filha
+            new LivroVestibular { VestibularId = 4, LivroId = 18, FaculdadeId = 2 }, // nebulosas
+            new LivroVestibular { VestibularId = 4, LivroId = 12, FaculdadeId = 2 }, // D.Casmurro
+            new LivroVestibular { VestibularId = 4, LivroId = 15, FaculdadeId = 2 }, // joão miguel
+            new LivroVestibular { VestibularId = 4, LivroId = 20, FaculdadeId = 2 }, // nós matamos o cao tinhoso
+            new LivroVestibular { VestibularId = 4, LivroId = 13, FaculdadeId = 2 }, // geografia
+            new LivroVestibular { VestibularId = 4, LivroId = 14, FaculdadeId = 2 }, // incidente em antares
+            new LivroVestibular { VestibularId = 4, LivroId = 9, FaculdadeId = 2 }, // canção para ninar menino grande
+            new LivroVestibular { VestibularId = 4, LivroId = 5, FaculdadeId = 2 }, // a visão das plantas
+        };
+        builder.Entity<LivroVestibular>().HasData(livroVestibulares);
     
         #region Populate Roles - Perfis de Usuário
         List<IdentityRole> roles = new()
