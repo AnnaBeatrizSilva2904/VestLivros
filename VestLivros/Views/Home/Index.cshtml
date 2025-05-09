@@ -2,3 +2,49 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
+<!-- escolha data-bs-toggle leitura -->
+<div class="container text-center my-5">
+    <div class="d-flex row-direction justify-content-center">
+        <h3> Escolha o ano para sua leitura </h3>
+    </div>
+</div>
+
+<!--class button dropdown-->
+<div class="d-flex row-direction justify-content-evenly">
+    <button type="button" class="btn btn-danger">Ver todos</button>
+    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        2026
+    </button>
+    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        2027
+    </button>
+    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        2028
+    </button>
+    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        2029
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">USP</a></li>
+        <li><a class="dropdown-item" href="#">UNICAMP</a></li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#">Ver todos os livros</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3 my-5">
+        <div class="col mb-2">
+            <div class="card espacoCard text-center">
+                <img src="/VestLivros/wwwroot/img/as meninas.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">As Meninas - Lygia Fagundes Telles</h5>
+                    <a href="#" class="btn btn-primary">Mais informações</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

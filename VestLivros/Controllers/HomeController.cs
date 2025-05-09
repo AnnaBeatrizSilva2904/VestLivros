@@ -8,13 +8,17 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, AppDbContext db)
     {
+        _db = db;
         _logger = logger;
     }
 
     public IActionResult Index()
     {
+        List<Livro> livros = _db.Livros
+            .Where (l => l.nome)
+            .Include (l =>)
         return View();
     }
 
