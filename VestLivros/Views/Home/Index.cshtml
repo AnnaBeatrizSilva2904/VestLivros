@@ -37,14 +37,16 @@
 
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3 my-5">
+        @foreach (var livro in Model){
         <div class="col mb-2">
             <div class="card espacoCard text-center">
-                <img src="/VestLivros/wwwroot/img/as meninas.jpg" class="card-img-top" alt="...">
+                <img src="@livro.ArquivoFoto" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">As Meninas - Lygia Fagundes Telles</h5>
+                    <h5 class="card-title">@livro.Nome</h5>
                     <a href="#" class="btn btn-primary">Mais informações</a>
                 </div>
             </div>
         </div>
+        }
     </div>
 </div>

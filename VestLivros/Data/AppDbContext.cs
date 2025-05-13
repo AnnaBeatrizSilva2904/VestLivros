@@ -12,7 +12,6 @@ public class AppDbContext : IdentityDbContext<Usuario>
     }
 
     public DbSet<Livro> Livros { get; set; }
-    public DbSet<LivroFoto> LivroFotos { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Faculdade> Faculdades { get; set; }
     public DbSet<Vestibular> Vestibulares { get; set; }

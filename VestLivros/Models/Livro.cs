@@ -25,4 +25,9 @@ public class Livro
     [Required]
     [StringLength (90000, ErrorMessage = "O contexto histórico e social é um campo obrigatório")]
     public string Contexto { get; set; }
+
+    [Display(Name = "Foto")]
+    [StringLength(200)]
+    [Required (ErrorMessage = "Por favor, informe o arquivo")]
+    public string ArquivoFoto { get; set; }
 }

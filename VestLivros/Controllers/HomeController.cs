@@ -1,12 +1,14 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using VestLivros.Models;
+using VestLivros.Data;
 
 namespace VestLivros.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly AppDbContext _db;
 
     public HomeController(ILogger<HomeController> logger, AppDbContext db)
     {
@@ -16,10 +18,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        List<Livro> livros = _db.Livros
-            .Where (l => l.nome)
-            .Include (l =>)
-        return View();
+        List<Livro> livros = _db.Livros.ToList();
+        return View(livros);
     }
 
     public IActionResult Privacy()

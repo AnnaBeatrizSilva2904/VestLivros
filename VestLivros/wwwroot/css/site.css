@@ -1,31 +1,40 @@
-html {
-  font-size: 14px;
+.espacoCard img {
+  height: 350px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.card-body {
+  height: 150px;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.btn {
+  margin-top: 10px;
+  background-color: #323659;
+  border-color: #323659;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+h3 {
+  color: #3b4172;
+  font-weight: 900;
 }
 
-body {
-  margin-bottom: 60px;
+.btn-primary{
+  color: #e7ba80;
+  font-weight: 800;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+.btn-primary:hover{
+  background-color: #3d5a80;
+  color: #f1cb9a;
+  background-color: #3d5a80;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.btn-danger{
+  color: #e7ba80;
+  font-weight: bolder;
+}
+
+.btn-danger:hover{
+  background-color: #3d5a80;
+  color: #f1cb9a;
+  border-color: #3d5a80;
 }
