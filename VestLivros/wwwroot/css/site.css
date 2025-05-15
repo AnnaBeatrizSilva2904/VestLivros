@@ -1,3 +1,14 @@
+body {
+  background-color: rgb(255, 245, 231);
+  height: 100%;
+  width: 100%;
+}
+
+.navbar {
+  background-color: #323659;
+  color: #e7ba80;
+}
+
 .espacoCard img {
   height: 350px;
 }
@@ -6,10 +17,12 @@
   height: 150px;
 }
 
-.btn {
+.botoes {
   margin-top: 10px;
-  background-color: #323659;
-  border-color: #323659;
+  background-color: #323659 !important; 
+  border-color: #323659 !important;
+  color: #e7ba80 !important;
+  font-weight: 800;
 }
 
 h3 {
@@ -17,24 +30,28 @@ h3 {
   font-weight: 900;
 }
 
-.btn-primary{
+.botoes:hover{
+  background-color: #3d5a80 !important;
+  color: #f1cb9a !important;
+  background-color: #3d5a80 !important;
+}
+
+.informacao{
+  margin-top: 10px;
+  background-color: #323659;
+  border-color: #323659;
   color: #e7ba80;
   font-weight: 800;
 }
 
-.btn-primary:hover{
-  background-color: #3d5a80;
-  color: #f1cb9a;
-  background-color: #3d5a80;
+.informacao:hover {
+  background-color: #3d5a80 !important;
+  color: #f1cb9a !important;
+  background-color: #3d5a80 !important;
 }
 
-.btn-danger{
-  color: #e7ba80;
-  font-weight: bolder;
-}
-
-.btn-danger:hover{
-  background-color: #3d5a80;
-  color: #f1cb9a;
-  border-color: #3d5a80;
+.titulo{
+  color: #e7ba80 !important;
+  font-weight: 800 !important;
+  margin-left: 30px !important;
 }

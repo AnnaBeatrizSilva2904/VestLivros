@@ -12,17 +12,17 @@
 
 <!--class button dropdown-->
 <div class="d-flex row-direction justify-content-evenly">
-    <button type="button" class="btn btn-danger">Ver todos</button>
-    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <button type="button" class="btn botoes">Ver todos</button>
+    <button type="button" class="btn botoes dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         2026
     </button>
-    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <button type="button" class="btn botoes dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         2027
     </button>
-    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <button type="button" class="btn botoes dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         2028
     </button>
-    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <button type="button" class="btn  botoes dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         2029
     </button>
     <ul class="dropdown-menu">
@@ -37,16 +37,17 @@
 
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3 my-5">
-        @foreach (var livro in Model){
-        <div class="col mb-2">
-            <div class="card espacoCard text-center">
-                <img src="@livro.ArquivoFoto" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">@livro.Nome</h5>
-                    <a href="#" class="btn btn-primary">Mais informações</a>
+        @foreach (var livro in Model)
+        {
+            <div class="col mb-2">
+                <div class="card espacoCard text-center">
+                    <img src="@livro.ArquivoFoto" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@livro.Nome</h5>
+                        <a href="#" class="btn informacao">Mais informações</a>
+                    </div>
                 </div>
             </div>
-        </div>
         }
     </div>
 </div>
