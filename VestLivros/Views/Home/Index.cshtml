@@ -44,7 +44,7 @@
                     <img src="@livro.ArquivoFoto" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@livro.Nome</h5>
-                        <a href="#" class="btn informacao">Mais informações</a>
+                        <a class="btn informacao" asp-action="Livro" asp-route-id="@livro.Id">Mais informações</a>
                     </div>
                 </div>
             </div>

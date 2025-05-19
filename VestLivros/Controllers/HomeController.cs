@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using VestLivros.Models;
 using VestLivros.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace VestLivros.Controllers;
 
@@ -20,6 +21,14 @@ public class HomeController : Controller
     {
         List<Livro> livros = _db.Livros.ToList();
         return View(livros);
+    }
+
+    public IActionResult Livro(int id)
+    {
+        Livro livro = _db.Livros
+            .Where(l => l.Id == id)
+            .SingleOrDefault();
+            return View(livro);
     }
 
     public IActionResult Privacy()
