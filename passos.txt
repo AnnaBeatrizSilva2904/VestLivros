@@ -1,6 +1,6 @@
 configuração da conta local do GIT:
 git config --global user.name AnnaBeatrizSilva2904
-git config --global user.email annabeatryz2504@gmail.com
+git config --global user.name AnnaBeatrizSilva2904
 
 ---------------------------//---------------------------
 

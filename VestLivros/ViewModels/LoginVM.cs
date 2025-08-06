@@ -15,5 +15,5 @@ public class LoginVM
     [Display(Name = "Manter conectado?")]
     public bool Lembrar { get; set; }
 
-    public string UrlRetorno { get; set; }        
+    public string UrlRetorno { get; set; }
 }
