@@ -28,9 +28,24 @@ body {
   font-weight: 800;
 }
 
+h1 {
+  color: #3b4172;
+}
+
 h3 {
   color: #3b4172;
   font-weight: 900;
+}
+
+.botao {
+  background-color: #3b4172;
+  color: #e7ba80;
+  border-radius: 10px;
+}
+
+.card-header {
+  background-color: #323659;
+  color: #e7ba80;
 }
 
 .botoes:hover{

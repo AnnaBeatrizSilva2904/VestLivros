@@ -117,7 +117,7 @@ public class AccountController : Controller
             {
                 _logger.LogInformation($"Novo usuário registrado com o email {registro.Email}.");
 
-                await _userManager.AddToRoleAsync(usuario, "Cliente");
+                await _userManager.AddToRoleAsync(usuario, "Usuário");
 
                 if (registro.Foto != null)
                 {
@@ -140,6 +140,12 @@ public class AccountController : Controller
         }
         return View(registro);
     }
+
+    public IActionResult AccessDenied()
+    {
+        return View();
+    }
+
     public bool IsValidEmail(string email)
     {
         try
