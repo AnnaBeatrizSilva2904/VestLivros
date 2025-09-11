@@ -10,6 +10,28 @@
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
-.texto{
+.texto {
     color: #383d69;
+}
+
+.botao {
+    margin-top: 10px;
+    background-color: #323659 !important;
+    border-color: #323659 !important;
+    color: #e7ba80 !important;
+    font-weight: 800;
+}
+
+.conteudo {
+    font-weight: 700;
+    color: #383d69;
+}
+
+.titulo {
+    color: #e7ba80 !important;
+    font-weight: 800 !important;
+}
+
+h1 {
+    font-weight: 800;
 }

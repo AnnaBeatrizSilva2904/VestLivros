@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<link href="~/css/admin.css" rel="stylesheet">
+
 <h1>Livros</h1>
 
 <p>
@@ -32,29 +34,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Resumo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnaliseCritica)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contexto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArquivoFoto)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Resumo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnaliseCritica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contexto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArquivoFoto)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
