@@ -13,10 +13,12 @@ namespace VestLivros.Controllers
     public class LivrosController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _host;
 
-        public LivrosController(AppDbContext context)
+        public LivrosController(AppDbContext context, IWebHostEnvironment host)
         {
             _context = context;
+            _host = host;
         }
 
         // GET: Livros
@@ -54,12 +56,26 @@ namespace VestLivros.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Resumo,AnaliseCritica,Contexto,ArquivoFoto")] Livro livro)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Resumo,AnaliseCritica,Contexto,ArquivoFoto")] Livro livro, IFormFile Arquivo)
         {
             if (ModelState.IsValid)
             {
+                if (Arquivo != null)
+                {
+                    string wwwRootPath = _host.WebRootPath;
+                    string filename = livro.Nome + Path.GetExtension(Arquivo.FileName);
+                    string uploads = Path.Combine(wwwRootPath, @"img\");
+                    string newFile = Path.Combine(uploads, filename);
+                    using (var stream = new FileStream(newFile, FileMode.Create))
+                    {
+                        Arquivo.CopyTo(stream);
+                    }
+                    livro.ArquivoFoto = @"\img\" + filename;
+                }
+
                 _context.Add(livro);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(livro);

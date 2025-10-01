@@ -12,7 +12,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -21,23 +21,23 @@
             </div>
             <div class="form-group">
                 <label asp-for="Resumo" class="control-label"></label>
-                <input asp-for="Resumo" class="form-control" />
+                <textarea rows="5" cols="30" asp-for="Resumo" class="form-control"></textarea>
                 <span asp-validation-for="Resumo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AnaliseCritica" class="control-label"></label>
-                <input asp-for="AnaliseCritica" class="form-control" />
+                <textarea rows="5" cols="30" asp-for="AnaliseCritica" class="form-control"></textarea>
                 <span asp-validation-for="AnaliseCritica" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Contexto" class="control-label"></label>
-                <input asp-for="Contexto" class="form-control" />
+                <textarea rows="5" cols="30" asp-for="Contexto" class="form-control"></textarea>
                 <span asp-validation-for="Contexto" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="ArquivoFoto" class="control-label"></label>
-                <input asp-for="ArquivoFoto" class="form-control" />
-                <span asp-validation-for="ArquivoFoto" class="text-danger"></span>
+                <img id='Preview'>
+                <input name="Arquivo" type="file" class="form-control" accept=".jpg,.png,.jpeg,.gif" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="botao btn btn-primary" />
@@ -45,6 +45,21 @@
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+    <script>
+        window.addEventListener('load', function() {
+            document.querySelector('input[type=file]')
+            .addEventListener('change', function(){
+                if (this.files && this.files[0]) {
+                    var img = document.getElementById('Preview');
+                    img.src = URL.createObjectURL(this.files[0]);
+                }
+            })
+        })
+    </script>
+}
 
 <div>
     <a asp-action="Index">Back to List</a>

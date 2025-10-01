@@ -27,11 +27,28 @@
     color: #383d69;
 }
 
-.titulo {
+.titulo-admin {
     color: #e7ba80 !important;
     font-weight: 800 !important;
 }
 
 h1 {
     font-weight: 800;
+}
+
+.form-group {
+    width: 600px;
+    font-weight: 900;
+    color: #383d69;
+}
+
+.control-label {
+    padding-bottom: 2px;
+    padding-top: 10px;
+    font-weight: 900;
+    color: #383d69;
+}
+
+.botao {
+    margin-bottom: 5px;
 }

@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Detalhes do Livro";
 }
+
+<link href="~/css/site.css" rel="stylesheet">
 <!--Component Card-->
 <div class="card mb-3">
     <div class="row g-0">
@@ -10,7 +12,7 @@
         </div>
         <div class="col md-8">
             <div class="card-body">
-                <h5 class="card-title">@Model.Nome</h5>
+                <h5 class="titulo-livro">@Model.Nome</h5>
                 <p class="card-text"><h5>Resumo da obra:</h5>@Model.Resumo</p>
                 <p class="card-text"><h5>Contexto histórico e social:</h5>@Model.Contexto</p>
                 <p class="card-text">

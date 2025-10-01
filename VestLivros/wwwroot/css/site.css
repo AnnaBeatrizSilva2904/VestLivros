@@ -37,6 +37,11 @@ h3 {
   font-weight: 900;
 }
 
+h5 {
+  color: #3d5a80;
+  font-weight: 900;
+}
+
 .botao {
   background-color: #3b4172;
   color: #e7ba80;
@@ -72,6 +77,16 @@ h3 {
   color: #e7ba80 !important;
   font-weight: 800 !important;
   margin-left: 30px !important;
+}
+
+.titulo-livro{
+  color: #3b4172 !important;
+  font-weight: 800 !important;
+}
+
+.card-title {
+  color: #3b4172 !important;
+  font-weight: 800 !important;
 }
 
 .logo {

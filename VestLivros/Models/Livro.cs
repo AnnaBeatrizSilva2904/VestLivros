@@ -28,6 +28,5 @@ public class Livro
 
     [Display(Name = "Foto")]
     [StringLength(200)]
-    [Required (ErrorMessage = "Por favor, informe o arquivo")]
     public string ArquivoFoto { get; set; }
 }
