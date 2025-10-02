@@ -17,7 +17,6 @@ body {
 
 .card-body {
   height: 150px;
-  
 }
 
 .botoes {
@@ -46,6 +45,53 @@ h5 {
   background-color: #3b4172;
   color: #e7ba80;
   border-radius: 10px;
+}
+
+.botao-acessar {
+  background-color: #3b4172;
+  color: #e7ba80;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-color: #323659 !important;
+  font-weight: 700;
+}
+
+.botao-acessar:hover{
+  background-color: #3d5a80 !important;
+  color: #f1cb9a !important;
+  background-color: #3d5a80 !important;
+}
+
+.botao-entrar{
+  background-color: #3b4172;
+  color: #e7ba80;
+  border-radius: 10px;
+  margin-top: 5px;
+  border-color: #323659 !important;
+  font-weight: 700;
+}
+
+.botao-entrar:hover {
+  background-color: #3d5a80 !important;
+  color: #f1cb9a !important;
+  background-color: #3d5a80 !important;
+}
+
+.botao-criar{
+  background-color: #3b4172;
+  color: #e7ba80;
+  border-radius: 10px;
+  margin-top: 5px;
+  border-color: #323659 !important;
+  font-weight: 700;
+  border: #3b4172;
+}
+
+.botao-criar:hover {
+  background-color: #3d5a80 !important;
+  color: #f1cb9a !important;
+  background-color: #3d5a80 !important;
 }
 
 .card-header {

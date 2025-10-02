@@ -15,6 +15,9 @@ public class Livro
     public string Nome { get; set; }
 
     [Required]
+    public string PDF { get; set;}
+
+    [Required]
     [StringLength(3000)]
     public string Resumo { get; set; }
 

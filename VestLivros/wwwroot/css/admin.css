@@ -52,3 +52,7 @@ h1 {
 .botao {
     margin-bottom: 5px;
 }
+
+.table {
+    border: #000;
+}
