@@ -36,6 +36,11 @@ h1 {
     font-weight: 800;
 }
 
+.figure-caption {
+    font-weight: 800;
+    color: #323659;
+}
+
 .form-group {
     width: 600px;
     font-weight: 900;
@@ -54,5 +59,10 @@ h1 {
 }
 
 .table {
-    border: #000;
+    border: #b3b3b3;
+}
+
+img {
+    max-width: 310px;
+    max-height: 300px;
 }

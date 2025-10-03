@@ -3,9 +3,19 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-    <link href="~/css/admin.css" rel="stylesheet">
+<link href="~/css/admin.css" rel="stylesheet">
 
 <div class="container">
     <h1 class="titulo-admin display-4">Área Administrativa</h1>
-    <p class="conteudo lead">Seja bem vindo Administrador! Utilize o menu lateral para acesso aos diferentes cadastros do portal!</p>
+    <p class="conteudo lead">Seja bem vindo Administrador! Utilize o menu lateral para acesso aos diferentes cadastros
+        do portal!</p>
 </div>
+
+<li class='@(ViewData["Title"] == "Livro" ? "bg-dark rounded-end-5" : "")'>
+    <a class='nav-link fs-6 @(ViewData["Title"] == "Livro" ? "text-white" : "")' asp-action="Index" asp-controller="Livros">
+        <figure class="figure">
+            <img src="~/img/book.jpg" class="figure-img rounded">
+            <h2 class="figure-caption">Adicionar Livros</h2>
+        </figure>
+    </a>
+</li>

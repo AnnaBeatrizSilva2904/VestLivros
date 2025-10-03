@@ -14,7 +14,6 @@ public class Livro
     [StringLength(50, ErrorMessage = "O Nome deve possuir no máximo 50 carateres")]
     public string Nome { get; set; }
 
-    [Required]
     public string PDF { get; set;}
 
     [Required]
