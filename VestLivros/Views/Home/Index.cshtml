@@ -47,26 +47,10 @@
 <!--class button dropdown-->
 <div class="d-flex row-direction justify-content-evenly">
     <button type="button" class="btn botoes">Ver todos</button>
-    <button type="button" class="btn botoes dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        2026
-    </button>
-    <button type="button" class="btn botoes dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        2027
-    </button>
-    <button type="button" class="btn botoes dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        2028
-    </button>
-    <button type="button" class="btn  botoes dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        2029
-    </button>
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">USP</a></li>
-        <li><a class="dropdown-item" href="#">UNICAMP</a></li>
-        <li>
-            <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" href="#">Ver todos os livros</a></li>
-    </ul>
+    @foreach (var ano in ViewBag.Anos)
+    {
+        <button type="button" class="btn botoes">@ano</button>
+    }
 </div>
 
 <div class="container">
@@ -74,10 +58,11 @@
         @foreach (var livro in Model)
         {
             <div class="col mb-2">
-                <div class="card espacoCard text-center">
+                <div class="card espacoCard text-center @string.Join(", ", livro.Vestibulares.Select(v => v.Vestibular.Ano).Distinct().ToList())">
                     <img src="@livro.ArquivoFoto" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@livro.Nome</h5>
+                        <p>@string.Join(", ", livro.Vestibulares.Select(v => v.Vestibular.Ano).Distinct().ToList())</p>
                         <a class="btn informacao" asp-action="Livro" asp-route-id="@livro.Id">Mais informações</a>
                     </div>
                 </div>

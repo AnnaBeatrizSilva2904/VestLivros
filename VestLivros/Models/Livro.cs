@@ -31,4 +31,6 @@ public class Livro
     [Display(Name = "Foto")]
     [StringLength(200)]
     public string ArquivoFoto { get; set; }
+
+    public List<LivroVestibular> Vestibulares { get; set; }
 }

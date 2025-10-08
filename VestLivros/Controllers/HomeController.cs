@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using VestLivros.Models;
 using VestLivros.Data;
+using VestLivros.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace VestLivros.Controllers;
@@ -19,7 +20,13 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        List<Livro> livros = _db.Livros.ToList();
+        ViewData["Anos"] = _db.Vestibulares.Select(v => v.Ano).ToList();
+        
+        List<Livro> livros =
+            _db.Livros
+            .Include(l => l.Vestibulares)
+            .ThenInclude(v => v.Vestibular)
+            .ToList();
         return View(livros);
     }
 
@@ -28,7 +35,7 @@ public class HomeController : Controller
         Livro livro = _db.Livros
             .Where(l => l.Id == id)
             .SingleOrDefault();
-            return View(livro);
+        return View(livro);
     }
 
     public IActionResult Privacy()
@@ -42,3 +49,4 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+

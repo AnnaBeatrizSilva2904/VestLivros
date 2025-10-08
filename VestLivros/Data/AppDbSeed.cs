@@ -53,7 +53,7 @@ public class AppDbSeed
 
         List<LivroVestibular> livroVestibulares = new List<LivroVestibular>
         {
-            new LivroVestibular { VestibularId = 1, LivroId = 22, FaculdadeId = 1 }, // vestibular id = ano do vestibular; livro id = nome do livro; faculdade id = 1 unicamp e 2 USP
+            new LivroVestibular { VestibularId = 1, LivroId = 22, FaculdadeId = 1, }, // vestibular id = ano do vestibular; livro id = nome do livro; faculdade id = 1 unicamp e 2 USP
             new LivroVestibular { VestibularId = 1, LivroId = 24, FaculdadeId = 1 }, // Olhos d'água
             new LivroVestibular { VestibularId = 1, LivroId = 4, FaculdadeId = 1 }, // A vida não é útil
             new LivroVestibular { VestibularId = 1, LivroId = 2, FaculdadeId = 1 }, // casa velha
