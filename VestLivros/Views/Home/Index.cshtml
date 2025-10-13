@@ -6,36 +6,34 @@
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 <div id="carouselExampleCaptions" class="carousel slide">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="~/img/Chimamanda.png" class="imagem-carrosel d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="~/img/Clarisse.png" class="imagem-carrosel d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="~/img/LiteraturaBrasileira.png" class="imagem-carrosel d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
     </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/Chimamanda.png" class="imagem-carrosel d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/Clarisse.png" class="imagem-carrosel d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/LiteraturaBrasileira.png" class="imagem-carrosel d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
 <!-- escolha data-bs-toggle leitura -->
 <div class="container text-center my-5">
@@ -46,10 +44,10 @@
 
 <!--class button dropdown-->
 <div class="d-flex row-direction justify-content-evenly">
-    <button type="button" class="btn botoes">Ver todos</button>
+    <button type="button" class="btn botoes" onclick="filter('all')">Ver todos</button>
     @foreach (var ano in ViewBag.Anos)
     {
-        <button type="button" class="btn botoes">@ano</button>
+        <button type="button" class="btn botoes" onclick="filter('@ano')">@ano</button>
     }
 </div>
 
@@ -58,7 +56,8 @@
         @foreach (var livro in Model)
         {
             <div class="col mb-2">
-                <div class="card espacoCard text-center @string.Join(", ", livro.Vestibulares.Select(v => v.Vestibular.Ano).Distinct().ToList())">
+                <div
+                    class="card espacoCard text-center @string.Join(", ", livro.Vestibulares.Select(v => v.Vestibular.Ano).Distinct().ToList())">
                     <img src="@livro.ArquivoFoto" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@livro.Nome</h5>
