@@ -35,6 +35,14 @@
                 <span asp-validation-for="Contexto" class="text-danger"></span>
             </div>
             <div class="mb-3">
+                <label asp-for="FaculdadeNome" class="control-label"></label>
+                <select asp-for="FaculdadeNome" class="form-control">
+                    <option value="1">Unicamp</option>
+                    <option value="2">USP</option>
+                </select>
+                <span asp-validation-for="FaculdadeNome" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
                 <label asp-for="ArquivoFoto" class="control-label"></label>
                 <img id='Preview'>
                 <input name="Arquivo" type="file" class="form-control" accept=".jpg,.png,.jpeg,.gif" />
@@ -49,14 +57,14 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial"></partial>
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.querySelector('input[type=file]')
-            .addEventListener('change', function(){
-                if (this.files && this.files[0]) {
-                    var img = document.getElementById('Preview');
-                    img.src = URL.createObjectURL(this.files[0]);
-                }
-            })
+                .addEventListener('change', function () {
+                    if (this.files && this.files[0]) {
+                        var img = document.getElementById('Preview');
+                        img.src = URL.createObjectURL(this.files[0]);
+                    }
+                })
         })
     </script>
 }

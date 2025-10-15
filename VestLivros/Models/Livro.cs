@@ -32,5 +32,9 @@ public class Livro
     [StringLength(200)]
     public string ArquivoFoto { get; set; }
 
+    [ForeignKey("FaculdadeNome")]
+    public string FaculdadeNome { get; set; }
+    public Faculdade Faculdade { get; set; }
+
     public List<LivroVestibular> Vestibulares { get; set; }
 }

@@ -1,4 +1,4 @@
-@model VestLivros.Models.Livro
+@model VestLivros.Models.Livro;
 @{
     ViewData["Title"] = "Detalhes do Livro";
 }
@@ -9,7 +9,7 @@
     <div class="row g-0">
         <div class="imagem col-md-4">
             <img src="@Model.ArquivoFoto" class="imagem-livro img-fluid" alt="...">
-            <button type="button" class="botao-acessar btn btn-primary">Acessar PDF</button>
+            <button type="button" class="botao-acessar btn btn-primary">@Model.FaculdadeNome</button>
         </div>
         <div class="col md-8">
             <div class="card-body">

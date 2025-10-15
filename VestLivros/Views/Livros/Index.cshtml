@@ -28,9 +28,13 @@
                 @Html.DisplayNameFor(model => model.Contexto)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.FaculdadeNome)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ArquivoFoto)
             </th>
-            <th></th>
+            <th>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -45,6 +49,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Contexto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FaculdadeNome)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ArquivoFoto)
