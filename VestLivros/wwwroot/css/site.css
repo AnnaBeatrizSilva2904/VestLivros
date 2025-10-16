@@ -18,7 +18,14 @@ body {
 .card-body {
   height: 150px;
   top: -2px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.308);
+}
+
+.card-livro {
+  height: auto;
+  width: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .botoes {
@@ -28,6 +35,12 @@ body {
   color: #e7ba80 !important;
   font-weight: 800;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.botoes:hover {
+  transform: translateY(-3px); /* Move o elemento 10px para cima */
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
@@ -164,4 +177,14 @@ h5 {
 
 .imagem-carrosel {
   height: 550px;
+}
+
+.container-livro {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.container-livro:hover {
+  transform: translateY(-10px); /* Move o elemento 10px para cima */
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
 }

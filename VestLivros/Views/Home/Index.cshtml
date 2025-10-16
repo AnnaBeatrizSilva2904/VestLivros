@@ -68,7 +68,7 @@
         {
             <div class="col mb-2">
                 <div
-                    class="card espacoCard text-center @string.Join(" ", livro.Vestibulares.Select(v => v.Vestibular.Ano).Distinct().ToList())">
+                    class="card container-livro espacoCard text-center @string.Join(" ", livro.Vestibulares.Select(v => v.Vestibular.Ano).Distinct().ToList())">
                     <img src="@livro.ArquivoFoto" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@livro.Nome</h5>
