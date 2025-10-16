@@ -17,6 +17,8 @@ body {
 
 .card-body {
   height: 150px;
+  top: -2px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.308);
 }
 
 .botoes {
@@ -25,6 +27,7 @@ body {
   border-color: #323659 !important;
   color: #e7ba80 !important;
   font-weight: 800;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 h1 {
