@@ -4,6 +4,17 @@
 }
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/pesquisa.css" asp-append-version="true" />
+
+<form id="pesquisar" class="d-flex position-relative">
+    <input type="text" placeholder="Pesquisar livros..." />
+    <button class="position-absolute" type="submit"><i class="bi bi-search"></i></button>
+</form>
+
+<h5 id="qtdeResultados" class="texto my-4"></h5>
+<div id="resultado" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3"></div>
+
+<script src="~/js/pesquisa.js"></script>
 
 <div id="carouselExampleCaptions" class="carousel slide">
     <div class="carousel-indicators">
@@ -57,7 +68,7 @@
         {
             <div class="col mb-2">
                 <div
-                    class="card espacoCard text-center @string.Join(", ", livro.Vestibulares.Select(v => v.Vestibular.Ano).Distinct().ToList())">
+                    class="card espacoCard text-center @string.Join(" ", livro.Vestibulares.Select(v => v.Vestibular.Ano).Distinct().ToList())">
                     <img src="@livro.ArquivoFoto" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@livro.Nome</h5>

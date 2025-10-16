@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace VestLivros.Models;
 
-[Table ("livro")]
+[Table("livro")]
 public class Livro
 {
     [Key]
@@ -14,7 +14,7 @@ public class Livro
     [StringLength(50, ErrorMessage = "O Nome deve possuir no máximo 50 carateres")]
     public string Nome { get; set; }
 
-    public string PDF { get; set;}
+    public string PDF { get; set; }
 
     [Required]
     [StringLength(3000)]
@@ -25,16 +25,18 @@ public class Livro
     public string AnaliseCritica { get; set; }
 
     [Required]
-    [StringLength (90000, ErrorMessage = "O contexto histórico e social é um campo obrigatório")]
+    [StringLength(90000, ErrorMessage = "O contexto histórico e social é um campo obrigatório")]
     public string Contexto { get; set; }
 
     [Display(Name = "Foto")]
     [StringLength(200)]
     public string ArquivoFoto { get; set; }
 
-    [ForeignKey("FaculdadeNome")]
-    public string FaculdadeNome { get; set; }
+    public int? FaculdadeId { get; set; }
+
+    [ForeignKey("FaculdadeId")]
     public Faculdade Faculdade { get; set; }
+
 
     public List<LivroVestibular> Vestibulares { get; set; }
 }

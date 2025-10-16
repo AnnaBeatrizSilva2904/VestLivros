@@ -34,13 +34,12 @@
                 <textarea rows="5" cols="30" asp-for="Contexto" class="form-control"></textarea>
                 <span asp-validation-for="Contexto" class="text-danger"></span>
             </div>
-            <div class="mb-3">
-                <label asp-for="FaculdadeNome" class="control-label"></label>
-                <select asp-for="FaculdadeNome" class="form-control">
-                    <option value="1">Unicamp</option>
-                    <option value="2">USP</option>
+            <div class="form-group">
+                <label asp-for="FaculdadeId" class="control-label">Faculdade</label>
+                <select asp-for="FaculdadeId" class="form-control" asp-items="ViewBag.Faculdades">
+                    <option value="">Selecione uma faculdade</option>
                 </select>
-                <span asp-validation-for="FaculdadeNome" class="text-danger"></span>
+                <span asp-validation-for="FaculdadeId" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="ArquivoFoto" class="control-label"></label>

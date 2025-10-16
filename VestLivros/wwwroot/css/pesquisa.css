@@ -1,0 +1,21 @@
+#pesquisar input[type=text] {
+    padding: 15px 20px;
+    font-weight: 600;
+    background-color: #fff;
+    border-radius: 50px;
+    border: #323659 solid 2px;
+    font-size: 18px;
+    width: 100%;
+}
+
+#pesquisar button {
+    padding: 12px;
+    top: 1px;
+    right: 0;
+    border-radius: 50%;
+    width: 60px;
+    font-size: 20px;
+    background-color: #323659;
+    color: #e7ba80;
+    border: #323659 solid 2px;
+}

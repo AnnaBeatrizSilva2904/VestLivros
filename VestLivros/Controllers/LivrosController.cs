@@ -24,23 +24,26 @@ namespace VestLivros.Controllers
         // GET: Livros
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Livros.ToListAsync());
+            var livros = await _context.Livros
+                .Include(l => l.Faculdade)
+                .ToListAsync();
+
+            return View(livros);
         }
 
         // GET: Livros/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
+            
 
             var livro = await _context.Livros
+                .Include(l => l.Faculdade)
                 .FirstOrDefaultAsync(m => m.Id == id);
+            
             if (livro == null)
-            {
                 return NotFound();
-            }
 
             return View(livro);
         }
@@ -48,38 +51,30 @@ namespace VestLivros.Controllers
         // GET: Livros/Create
         public IActionResult Create()
         {
+            ViewBag.Faculdades = new SelectList(
+                _context.Faculdades.ToList(),
+                "Id",              // nome da coluna de ID na tabela faculdade
+                "FaculdadeNome"    // nome da coluna de exibição
+            );
+
             return View();
         }
 
-        // POST: Livros/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Resumo,AnaliseCritica,Contexto,ArquivoFoto")] Livro livro, IFormFile Arquivo)
+        public async Task<IActionResult> Create(Livro livro)
         {
             if (ModelState.IsValid)
             {
-                if (Arquivo != null)
-                {
-                    string wwwRootPath = _host.WebRootPath;
-                    string filename = livro.Nome + Path.GetExtension(Arquivo.FileName);
-                    string uploads = Path.Combine(wwwRootPath, @"img\");
-                    string newFile = Path.Combine(uploads, filename);
-                    using (var stream = new FileStream(newFile, FileMode.Create))
-                    {
-                        Arquivo.CopyTo(stream);
-                    }
-                    livro.ArquivoFoto = @"\img\" + filename;
-                }
-
                 _context.Add(livro);
                 await _context.SaveChangesAsync();
-
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Faculdades = new SelectList(_context.Faculdades.ToList(), "FaculdadeId", "FaculdadeNome", livro.Faculdade);
             return View(livro);
         }
+
 
         // GET: Livros/Edit/5
         public async Task<IActionResult> Edit(int? id)
