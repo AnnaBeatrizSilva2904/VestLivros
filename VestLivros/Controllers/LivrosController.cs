@@ -169,6 +169,26 @@ namespace VestLivros.Controllers
             return View(livro);
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var livro = await _context.Livros
+                .Include(l => l.Faculdade)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (livro == null)
+            {
+                return NotFound();
+            }
+
+            return View(livro);
+        }
+
+
         // DELETE
         public async Task<IActionResult> Delete(int? id)
         {

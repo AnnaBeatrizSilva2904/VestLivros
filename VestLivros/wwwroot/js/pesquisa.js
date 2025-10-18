@@ -40,12 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 const img = livro.foto || "/img/default.jpg";
                 divResultado.innerHTML += `
                     <div class="col mb-2">
-                        <div class="card text-center bg-white text-white">
-                            <img src="${img}" class="card-img-top" alt="${livro.nome}">
+                        <div class="container-livro card text-center bg-white">
+                            <img src="${img}" style="max-height:350px; border-top-radius: 10px;" class="card-img-top" alt="${livro.nome}">
                             <div class="card-body">
                                 <h5 class="card-title">${livro.nome}</h5>
                                 <p>${anos}</p>
-                                <a href="/Home/Livro/${livro.id}" class="btn btn-primary">Mais informações</a>
+                                <a href="/Home/Livro/${livro.id}" class="informacao btn">Mais informações</a>
                             </div>
                         </div>
                     </div>

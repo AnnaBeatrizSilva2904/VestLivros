@@ -1,54 +1,65 @@
 @model VestLivros.Models.Livro
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Livro";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Detalhes do Livro</h1>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Nome)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Nome)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Resumo)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Resumo)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.AnaliseCritica)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.AnaliseCritica)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Contexto)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Contexto)
+    </dd>
+
+    <dt class="col-sm-2">
+        Faculdade
+    </dt>
+    <dd class="col-sm-10">
+        @Model.Faculdade?.FaculdadeNome
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ArquivoFoto)
+    </dt>
+    <dd class="col-sm-10">
+        @if (!string.IsNullOrEmpty(Model.ArquivoFoto))
+        {
+            <img src="@Model.ArquivoFoto" alt="Foto do Livro" style="max-width: 200px; border-radius: 10px;" />
+        }
+        else
+        {
+            <span>Sem imagem</span>
+        }
+    </dd>
+</dl>
 
 <div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Resumo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Resumo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AnaliseCritica)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AnaliseCritica)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Contexto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contexto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FaculdadeId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FaculdadeId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ArquivoFoto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArquivoFoto)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="botao btn me-2" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+    <a class="botao btn" asp-action="Index">Voltar</a>
 </div>
