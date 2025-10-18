@@ -30,12 +30,11 @@ public class Livro
 
     [Display(Name = "Foto")]
     [StringLength(200)]
-    public string ArquivoFoto { get; set; }
+    public string? ArquivoFoto { get; set; }
 
+    [ForeignKey("Faculdade")]
     public int? FaculdadeId { get; set; }
-
-    [ForeignKey("FaculdadeId")]
-    public Faculdade Faculdade { get; set; }
+    public Faculdade? Faculdade { get; set; }
 
 
     public List<LivroVestibular> Vestibulares { get; set; }

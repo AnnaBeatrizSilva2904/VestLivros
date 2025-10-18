@@ -10,7 +10,8 @@
         <div class="imagem col-md-4">
             <img src="@Model.ArquivoFoto" class="imagem-livro img-fluid" alt="...">
             <button type="button" class="botao-acessar btn btn-primary">
-                @(Model.Faculdade != null ? Model.Faculdade.FaculdadeNome : "Sem faculdade")
+                <i class="bi bi-mortarboard"></i>
+                @(Model.Faculdade != null ? Model.Faculdade.FaculdadeNome : "Sem faculdade vinculada")
             </button>
         </div>
         <div class="col md-8">

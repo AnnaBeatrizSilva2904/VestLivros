@@ -43,10 +43,20 @@
                 </select>
                 <span asp-validation-for="FaculdadeId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ArquivoFoto" class="control-label"></label>
-                <img id='Preview'>
-                <input name="Foto" type="file" class="form-control" accept=".jpg,.png,.jpeg,.gif"></span>
+            <div class="form-group mb-3">
+                <label asp-for="ArquivoFoto" class="control-label">Imagem Atual</label><br />
+
+                @if (!string.IsNullOrEmpty(Model.ArquivoFoto))
+                {
+                    <img src="@Model.ArquivoFoto" alt="Imagem atual" style="max-height:250px;" class="mb-2" />
+                }
+                else
+                {
+                    <p><em>Nenhuma imagem cadastrada</em></p>
+                }
+
+                <input name="novaImagem" type="file" class="form-control" accept=".jpg,.png,.jpeg,.gif" />
+                <small class="text-muted">Selecione apenas se quiser trocar a imagem atual!!</small>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="botao btn btn-primary" />

@@ -22,50 +22,50 @@ public class HomeController : Controller
     }
 
     [HttpGet]
-public async Task<IActionResult> BuscarLivros(string termo)
-{
-    try
+    public async Task<IActionResult> BuscarLivros(string termo)
     {
-        if (string.IsNullOrWhiteSpace(termo))
+        try
         {
-            return Json(new { total = 0, resultados = new List<object>() });
+            if (string.IsNullOrWhiteSpace(termo))
+            {
+                return Json(new { total = 0, resultados = new List<object>() });
+            }
+
+            var livros = await _context.Livros
+                .Include(l => l.Vestibulares)
+                    .ThenInclude(v => v.Vestibular)
+                .Where(l => l.Nome.Contains(termo))
+                .ToListAsync();
+
+            var resultados = livros.Select(l => new
+            {
+                id = l.Id,
+                nome = l.Nome,
+                foto = l.ArquivoFoto,
+                anos = l.Vestibulares
+                    .Select(v => v.Vestibular?.Ano)
+                    .Distinct()
+                    .Where(a => a != null)
+                    .ToList()
+            }).ToList();
+
+            return Json(new
+            {
+                total = resultados.Count,
+                resultados
+            });
         }
-
-        var livros = await _context.Livros
-            .Include(l => l.Vestibulares)
-                .ThenInclude(v => v.Vestibular)
-            .Where(l => l.Nome.Contains(termo))
-            .ToListAsync();
-
-        var resultados = livros.Select(l => new
+        catch (Exception ex)
         {
-            id = l.Id,
-            nome = l.Nome,
-            foto = l.ArquivoFoto,
-            anos = l.Vestibulares
-                .Select(v => v.Vestibular?.Ano)
-                .Distinct()
-                .Where(a => a != null)
-                .ToList()
-        }).ToList();
-
-        return Json(new
-        {
-            total = resultados.Count,
-            resultados
-        });
+            Console.WriteLine("Erro ao buscar livros: " + ex.Message);
+            return Json(new { erro = ex.Message });
+        }
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine("Erro ao buscar livros: " + ex.Message);
-        return Json(new { erro = ex.Message });
-    }
-}
 
     public IActionResult Index()
     {
         ViewData["Anos"] = _db.Vestibulares.Select(v => v.Ano).ToList();
-        
+
         List<Livro> livros =
             _db.Livros
             .Include(l => l.Vestibulares)
@@ -74,14 +74,17 @@ public async Task<IActionResult> BuscarLivros(string termo)
         return View(livros);
     }
 
-    public IActionResult Livro(int id)
+    public async Task<IActionResult> Livro(int id)
     {
-        Livro livro = _db.Livros
-            .Where(l => l.Id == id)
-            .SingleOrDefault();
+        var livro = await _context.Livros
+            .Include(l => l.Faculdade) // carrega a faculdade associada
+            .FirstOrDefaultAsync(l => l.Id == id);
+
+        if (livro == null)
+            return NotFound();
+
         return View(livro);
     }
-
     public IActionResult Privacy()
     {
         return View();

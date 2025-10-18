@@ -7,47 +7,54 @@
 
 <link href="~/css/admin.css" rel="stylesheet">
 
-<h1>Create Livro</h1>
+<h1>Cadastrar Novo Livro</h1>
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+
+            <div class="form-group mb-3">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div class="form-group mb-3">
                 <label asp-for="Resumo" class="control-label"></label>
-                <textarea rows="5" cols="30" asp-for="Resumo" class="form-control"></textarea>
+                <textarea rows="5" asp-for="Resumo" class="form-control"></textarea>
                 <span asp-validation-for="Resumo" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div class="form-group mb-3">
                 <label asp-for="AnaliseCritica" class="control-label"></label>
-                <textarea rows="5" cols="30" asp-for="AnaliseCritica" class="form-control"></textarea>
+                <textarea rows="5" asp-for="AnaliseCritica" class="form-control"></textarea>
                 <span asp-validation-for="AnaliseCritica" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div class="form-group mb-3">
                 <label asp-for="Contexto" class="control-label"></label>
-                <textarea rows="5" cols="30" asp-for="Contexto" class="form-control"></textarea>
+                <textarea rows="5" asp-for="Contexto" class="form-control"></textarea>
                 <span asp-validation-for="Contexto" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div class="form-group mb-3">
                 <label asp-for="FaculdadeId" class="control-label">Faculdade</label>
                 <select asp-for="FaculdadeId" class="form-control" asp-items="ViewBag.Faculdades">
                     <option value="">Selecione uma faculdade</option>
                 </select>
                 <span asp-validation-for="FaculdadeId" class="text-danger"></span>
             </div>
-            <div class="mb-3">
-                <label asp-for="ArquivoFoto" class="control-label"></label>
-                <img id='Preview'>
-                <input name="Arquivo" type="file" class="form-control" accept=".jpg,.png,.jpeg,.gif" />
+
+            <div class="form-group mb-3">
+                <label asp-for="ArquivoFoto" class="control-label">Imagem do Livro</label><br />
+                <img id="Preview" class="mb-2" style="max-height:150px; display:block;" />
+                <input name="arquivo" type="file" class="form-control" accept=".jpg,.png,.jpeg,.gif" />
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="botao btn btn-primary" />
+
+            <div class="form-group mb-3">
+                <input type="submit" value="Salvar Livro" class="botao btn" />
             </div>
         </form>
     </div>
@@ -56,18 +63,19 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial"></partial>
     <script>
-        window.addEventListener('load', function () {
-            document.querySelector('input[type=file]')
-                .addEventListener('change', function () {
-                    if (this.files && this.files[0]) {
-                        var img = document.getElementById('Preview');
-                        img.src = URL.createObjectURL(this.files[0]);
-                    }
-                })
-        })
+        // preview da imagem antes do envio
+        document.addEventListener('DOMContentLoaded', function () {
+            const input = document.querySelector('input[type=file]');
+            input.addEventListener('change', function () {
+                if (this.files && this.files[0]) {
+                    const img = document.getElementById('Preview');
+                    img.src = URL.createObjectURL(this.files[0]);
+                }
+            });
+        });
     </script>
 }
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="botao btn mt-2">Voltar</a>
 </div>
