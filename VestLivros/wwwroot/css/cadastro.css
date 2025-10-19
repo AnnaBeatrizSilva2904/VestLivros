@@ -1,0 +1,124 @@
+/* ======== ESTILO GERAL ======== */
+body {
+    background-color: rgb(255, 245, 231); /* tom bege suave */
+    font-family: 'Poppins', sans-serif;
+    color: #2b2b2b;
+}
+
+/* ======== CONTAINER PRINCIPAL ======== */
+.container {
+    max-width: 900px;
+    margin-top: 40px;
+}
+
+h1.display-5 {
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #323659;
+}
+
+/* ======== CARD ======== */
+.card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    border: none;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ======== CABEÇALHO ======== */
+.card-header {
+    background-color: #2e315b; /* azul escuro */
+    color: #f5c77a; /* dourado suave */
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 0;
+}
+
+/* ======== FORMULÁRIO ======== */
+.form-floating label {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.form-control {
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    height: 52px;
+    font-size: 1rem;
+    padding-left: 15px;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #2e315b;
+    box-shadow: 0 0 0 0.15rem rgba(46, 49, 91, 0.2);
+}
+
+/* ======== AVATAR ======== */
+#PreviewImage {
+    max-height: 270px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #2e315b30;
+    transition: transform 0.3s ease;
+}
+
+#PreviewImage:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+/* ======== BOTÃO CRIAR CONTA ======== */
+.botao-criar {
+    background-color: #2e315b;
+    color: #f5c77a;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 0;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+}
+
+.botao-criar:hover {
+    background-color: #3b3f75;
+    color: #fff3e0;
+    transform: translateY(-2px);
+}
+
+/* ======== RODAPÉ ======== */
+.card-footer {
+    background-color: transparent;
+    font-size: 0.9rem;
+}
+
+.card-footer a {
+    color: #2e315b;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.card-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 768px) {
+    .col-md-7, .col-md-5 {
+        width: 100%;
+    }
+
+    #PreviewImage {
+        margin-top: 20px;
+        width: 100%;
+    }
+}

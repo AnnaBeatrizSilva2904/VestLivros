@@ -1,0 +1,98 @@
+/* Fundo geral */
+body {
+    background-color: #fef4e9;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Título principal */
+h1.display-5 {
+    color: #2f315a;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+/* Card principal */
+.card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(47, 49, 90, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* Cabeçalho do card */
+.card-header {
+    background-color: #2f315a;
+    color: #f2b36f;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+    padding: 1.5rem 0;
+    font-weight: 600;
+}
+
+/* Inputs */
+.form-floating > .form-control {
+    border-radius: 10px;
+    border: 1px solid #e3e3e3;
+    box-shadow: none;
+    font-size: 0.95rem;
+}
+
+.form-floating > label {
+    color: #a3a3a3;
+    font-size: 0.9rem;
+}
+
+/* Botão Entrar */
+.botao-entrar {
+    background-color: #2f315a !important;
+    border: none !important;
+    color: #f2b36f !important;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    padding: 0.7rem 0;
+    text-transform: uppercase;
+}
+
+.botao-entrar:hover {
+    background-color: #3c3e6f !important;
+    transform: scale(1.02);
+}
+
+/* Rodapé do card */
+.card-footer {
+    background-color: #fafafa;
+    border-top: 1px solid #eaeaea;
+    font-size: 0.9rem;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.card-footer a {
+    color: #2f315a;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.card-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Layout responsivo */
+@media (max-width: 768px) {
+    .card {
+        width: 95%;
+    }
+
+    h1.display-5 {
+        font-size: 1.8rem;
+    }
+}

@@ -61,10 +61,11 @@ namespace VestLivros.Controllers
         // POST: Livros/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Livro livro, IFormFile? arquivo)
+        public async Task<IActionResult> Create(Livro livro, IFormFile? arquivo, IFormFile? pdf)
         {
             if (ModelState.IsValid)
             {
+                // Upload da imagem
                 if (arquivo != null && arquivo.Length > 0)
                 {
                     string pasta = Path.Combine(_host.WebRootPath, "uploads", "livros");
@@ -82,6 +83,24 @@ namespace VestLivros.Controllers
                     livro.ArquivoFoto = $"/uploads/livros/{nomeArquivo}";
                 }
 
+                // Upload do PDF
+                if (pdf != null && pdf.Length > 0)
+                {
+                    string pastaPdf = Path.Combine(_host.WebRootPath, "uploads", "pdf");
+                    if (!Directory.Exists(pastaPdf))
+                        Directory.CreateDirectory(pastaPdf);
+
+                    string nomePdf = Guid.NewGuid().ToString() + Path.GetExtension(pdf.FileName);
+                    string caminhoPdf = Path.Combine(pastaPdf, nomePdf);
+
+                    using (var stream = new FileStream(caminhoPdf, FileMode.Create))
+                    {
+                        await pdf.CopyToAsync(stream);
+                    }
+
+                    livro.PDF = $"/uploads/pdf/{nomePdf}";
+                }
+
                 _context.Add(livro);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -90,6 +109,7 @@ namespace VestLivros.Controllers
             ViewBag.Faculdades = new SelectList(_context.Faculdades.ToList(), "Id", "FaculdadeNome", livro.FaculdadeId);
             return View(livro);
         }
+
 
         // GET: Livros/Edit/5
         public async Task<IActionResult> Edit(int? id)
