@@ -7,7 +7,7 @@
 
 <link href="~/css/admin.css" rel="stylesheet">
 
-<h1>Edit</h1>
+<h1>Editar livro cadastrado</h1>
 
 <hr />
 <div class="row">
@@ -36,19 +36,24 @@
                 <span asp-validation-for="Contexto" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="FaculdadeId" class="control-label"></label>
+                <label asp-for="FaculdadeId" class="control-label">Faculdade</label>
                 <select asp-for="FaculdadeId" class="form-control">
                     <option value="1">Unicamp</option>
                     <option value="2">USP</option>
                 </select>
                 <span asp-validation-for="FaculdadeId" class="text-danger"></span>
             </div>
+            <div class="mb-3">
+                <label class="control-label">Arquivo PDF</label>
+                <input name="pdf" type="file" class="form-control" accept=".pdf" />
+            </div>
             <div class="form-group mb-3">
                 <label asp-for="ArquivoFoto" class="control-label">Imagem Atual</label><br />
 
                 @if (!string.IsNullOrEmpty(Model.ArquivoFoto))
                 {
-                    <img src="@Model.ArquivoFoto" alt="Imagem atual" style="max-height:350px; border-radius: 10px;" class="mb-2" />
+                    <img src="@Model.ArquivoFoto" alt="Imagem atual" style="max-height:350px; border-radius: 10px;"
+                        class="mb-2" />
                 }
                 else
                 {
