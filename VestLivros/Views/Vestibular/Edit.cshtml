@@ -1,0 +1,29 @@
+@model VestLivros.Models.Vestibular
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/css/admin.css" rel="stylesheet">
+
+<h1>Editar Ano Cadastrado</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="faculdade form-group">
+                <label asp-for="Ano" class="control-label"></label>
+                <input asp-for="Ano" class="form-control">
+                <span asp-validation-for="Ano" class="text-danger"></span>
+            </div>
+            <div>
+                <input type="submit" value="Salvar" class="botao btn" /> |
+                <a class="botao btn" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>

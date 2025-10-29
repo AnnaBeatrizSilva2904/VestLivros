@@ -62,15 +62,21 @@ public class HomeController : Controller
         }
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        ViewData["Anos"] = _db.Vestibulares.Select(v => v.Ano).ToList();
+        var anos = await _context.Vestibulares
+            .OrderBy(v => v.Ano)
+            .Select(v => v.Ano)
+            .Distinct()
+            .ToListAsync();
 
-        List<Livro> livros =
-            _db.Livros
+        ViewBag.Anos = anos;
+
+        var livros = await _context.Livros
             .Include(l => l.Vestibulares)
-            .ThenInclude(v => v.Vestibular)
-            .ToList();
+            .ThenInclude(lv => lv.Vestibular)
+            .ToListAsync();
+
         return View(livros);
     }
 

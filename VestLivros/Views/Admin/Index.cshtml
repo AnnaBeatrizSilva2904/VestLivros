@@ -7,15 +7,30 @@
 
 <div class="container">
     <h1 class="titulo-admin display-4">Área Administrativa</h1>
-    <p class="conteudo lead">Seja bem vindo Administrador! Utilize o menu lateral para acesso aos diferentes cadastros
+    <p class="conteudo lead">Seja bem vindo Administrador! Utilize o menu lateral ou os cards abaixo para acesso aos diferentes cadastros
         do portal!</p>
 </div>
 
-<li class='@(ViewData["Title"] == "Livro" ? "bg-dark rounded-end-5" : "")'>
-    <a class='nav-link fs-6 @(ViewData["Title"] == "Livro" ? "text-white" : "")' asp-action="Index" asp-controller="Livros">
-        <figure class="figure">
-            <img src="~/img/book.jpg" class="figure-img rounded">
-            <h2 class="figure-caption">Adicionar Livros</h2>
-        </figure>
-    </a>
-</li>
+
+<div class="cards-container">
+    <div class="card-admin">
+        <a asp-action="Index" asp-controller="Livros" class="card-link">
+            <img src="~/img/book.jpg" alt="Livros" class="card-img">
+            <h2 class="card-title">Adicionar Livros</h2>
+        </a>
+    </div>
+
+    <div class="card-admin">
+        <a asp-action="Index" asp-controller="Faculdades" class="card-link">
+            <img src="~/img/Faculdade.jpg" alt="Faculdades" class="card-img">
+            <h2 class="card-title">Adicionar Faculdades</h2>
+        </a>
+    </div>
+
+    <div class="card-admin">
+        <a asp-action="Index" asp-controller="Vestibular" class="card-link">
+            <img src="~/img/time.jpg" alt="Faculdades" class="card-img">
+            <h2 class="card-title">Adicionar Anos</h2>
+        </a>
+    </div>
+</div>

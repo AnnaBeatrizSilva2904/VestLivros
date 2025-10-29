@@ -49,23 +49,19 @@ namespace VestLivros.Controllers
         // GET: Livros/Create
         public IActionResult Create()
         {
-            ViewBag.Faculdades = new SelectList(
-                _context.Faculdades.ToList(),
-                "Id",
-                "FaculdadeNome"
-            );
-
+            ViewBag.Faculdades = new SelectList(_context.Faculdades, "Id", "FaculdadeNome");
+            ViewBag.Anos = new MultiSelectList(_context.Vestibulares.OrderBy(v => v.Ano), "Id", "Ano");
             return View();
         }
 
         // POST: Livros/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Livro livro, IFormFile? arquivo, IFormFile? pdf)
+        public async Task<IActionResult> Create(Livro livro, IFormFile? arquivo, IFormFile? pdf, int[] anosSelecionados)
         {
             if (ModelState.IsValid)
             {
-                // Upload da imagem
+                // Upload de imagem
                 if (arquivo != null && arquivo.Length > 0)
                 {
                     string pasta = Path.Combine(_host.WebRootPath, "uploads", "livros");
@@ -76,9 +72,7 @@ namespace VestLivros.Controllers
                     string caminhoArquivo = Path.Combine(pasta, nomeArquivo);
 
                     using (var stream = new FileStream(caminhoArquivo, FileMode.Create))
-                    {
                         await arquivo.CopyToAsync(stream);
-                    }
 
                     livro.ArquivoFoto = $"/uploads/livros/{nomeArquivo}";
                 }
@@ -94,19 +88,34 @@ namespace VestLivros.Controllers
                     string caminhoPdf = Path.Combine(pastaPdf, nomePdf);
 
                     using (var stream = new FileStream(caminhoPdf, FileMode.Create))
-                    {
                         await pdf.CopyToAsync(stream);
-                    }
 
                     livro.PDF = $"/uploads/pdf/{nomePdf}";
                 }
 
-                _context.Add(livro);
+                _context.Livros.Add(livro);
                 await _context.SaveChangesAsync();
+
+                // Relacionar os anos
+                if (anosSelecionados != null && anosSelecionados.Length > 0)
+                {
+                    foreach (var anoId in anosSelecionados)
+                    {
+                        _context.LivroVestibulares.Add(new LivroVestibular
+                        {
+                            LivroId = livro.Id,
+                            VestibularId = anoId,
+                            FaculdadeId = livro.FaculdadeId.Value
+                        });
+                    }
+                    await _context.SaveChangesAsync();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.Faculdades = new SelectList(_context.Faculdades.ToList(), "Id", "FaculdadeNome", livro.FaculdadeId);
+            ViewBag.Faculdades = new SelectList(_context.Faculdades, "Id", "FaculdadeNome", livro.FaculdadeId);
+            ViewBag.Anos = new MultiSelectList(_context.Vestibulares.OrderBy(v => v.Ano), "Id", "Ano");
             return View(livro);
         }
 
@@ -117,16 +126,25 @@ namespace VestLivros.Controllers
             if (id == null)
                 return NotFound();
 
-            var livro = await _context.Livros.FindAsync(id);
+            var livro = await _context.Livros
+                .Include(l => l.Vestibulares)
+                .ThenInclude(lv => lv.Vestibular)
+                .FirstOrDefaultAsync(l => l.Id == id);
+
             if (livro == null)
                 return NotFound();
+
+            ViewBag.Faculdades = new SelectList(_context.Faculdades, "Id", "FaculdadeNome", livro.FaculdadeId);
+
+            var anosSelecionados = livro.Vestibulares.Select(v => v.VestibularId).ToArray();
+            ViewBag.Anos = new MultiSelectList(_context.Vestibulares.OrderBy(v => v.Ano), "Id", "Ano", anosSelecionados);
 
             return View(livro);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Livro livro, IFormFile? novaImagem)
+        public async Task<IActionResult> Edit(int id, Livro livro, IFormFile? novaImagem, IFormFile? novoPdf, int[] anosSelecionados)
         {
             if (id != livro.Id)
                 return NotFound();
@@ -135,45 +153,80 @@ namespace VestLivros.Controllers
             {
                 try
                 {
-                    var livroExistente = await _context.Livros.AsNoTracking().FirstOrDefaultAsync(l => l.Id == id);
+                    var livroExistente = await _context.Livros
+                        .Include(l => l.Vestibulares)
+                        .FirstOrDefaultAsync(l => l.Id == id);
+
                     if (livroExistente == null)
                         return NotFound();
 
-                    // Se o admin enviou uma nova imagem
+                    // Guarda valores antigos antes de sobrescrever
+                    var pdfAntigo = livroExistente.PDF;
+                    var fotoAntiga = livroExistente.ArquivoFoto;
+
+                    // Atualiza campos básicos
+                    _context.Entry(livroExistente).CurrentValues.SetValues(livro);
+
+                    // Restaura PDF e imagem se o form não enviou novos arquivos
+                    livroExistente.PDF = pdfAntigo;
+                    livroExistente.ArquivoFoto = fotoAntiga;
+
+                    // ======== IMAGEM ========
                     if (novaImagem != null && novaImagem.Length > 0)
                     {
-                        // Apagar a imagem anterior se existir
-                        if (!string.IsNullOrEmpty(livroExistente.ArquivoFoto))
-                        {
-                            var caminhoAntigo = Path.Combine(_host.WebRootPath, livroExistente.ArquivoFoto.TrimStart('/'));
-                            if (System.IO.File.Exists(caminhoAntigo))
-                                System.IO.File.Delete(caminhoAntigo);
-                        }
-
-                        // Criar pasta se não existir
                         string pasta = Path.Combine(_host.WebRootPath, "uploads", "livros");
                         if (!Directory.Exists(pasta))
                             Directory.CreateDirectory(pasta);
 
-                        // Salvar nova imagem
                         string nomeArquivo = Guid.NewGuid().ToString() + Path.GetExtension(novaImagem.FileName);
                         string caminhoArquivo = Path.Combine(pasta, nomeArquivo);
 
                         using (var stream = new FileStream(caminhoArquivo, FileMode.Create))
-                        {
                             await novaImagem.CopyToAsync(stream);
-                        }
 
-                        livro.ArquivoFoto = $"/uploads/livros/{nomeArquivo}";
+                        livroExistente.ArquivoFoto = $"/uploads/livros/{nomeArquivo}";
                     }
-                    else
+
+                    // ======== PDF ========
+                    if (novoPdf != null && novoPdf.Length > 0)
                     {
-                        // Nenhuma nova imagem -> mantém a antiga
-                        livro.ArquivoFoto = livroExistente.ArquivoFoto;
+                        string pastaPdf = Path.Combine(_host.WebRootPath, "uploads", "pdf");
+                        if (!Directory.Exists(pastaPdf))
+                            Directory.CreateDirectory(pastaPdf);
+
+                        string nomePdf = Guid.NewGuid().ToString() + Path.GetExtension(novoPdf.FileName);
+                        string caminhoPdf = Path.Combine(pastaPdf, nomePdf);
+
+                        using (var stream = new FileStream(caminhoPdf, FileMode.Create))
+                            await novoPdf.CopyToAsync(stream);
+
+                        livroExistente.PDF = $"/uploads/pdf/{nomePdf}";
                     }
 
-                    _context.Update(livro);
+                    // ======== MANTÉM SE NÃO TROCAR ========
+                    if (novaImagem == null)
+                        _context.Entry(livroExistente).Property(l => l.ArquivoFoto).IsModified = false;
+
+                    if (novoPdf == null)
+                        _context.Entry(livroExistente).Property(l => l.PDF).IsModified = false;
+
+                    // ======== ANOS ========
+                    livroExistente.Vestibulares.Clear();
+                    if (anosSelecionados != null && anosSelecionados.Length > 0)
+                    {
+                        foreach (var anoId in anosSelecionados)
+                        {
+                            livroExistente.Vestibulares.Add(new LivroVestibular
+                            {
+                                LivroId = livroExistente.Id,
+                                VestibularId = anoId,
+                                FaculdadeId = livro.FaculdadeId.Value
+                            });
+                        }
+                    }
+
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -182,12 +235,22 @@ namespace VestLivros.Controllers
                     else
                         throw;
                 }
+            }
 
-                return RedirectToAction(nameof(Index));
+            // ======== SE DER ERRO, RECARREGA TUDO ========
+            ViewBag.Faculdades = new SelectList(_context.Faculdades, "Id", "FaculdadeNome", livro.FaculdadeId);
+            ViewBag.Anos = new MultiSelectList(_context.Vestibulares.OrderBy(v => v.Ano), "Id", "Ano", anosSelecionados);
+
+            var livroAtual = await _context.Livros.AsNoTracking().FirstOrDefaultAsync(l => l.Id == id);
+            if (livroAtual != null)
+            {
+                livro.ArquivoFoto = livroAtual.ArquivoFoto;
+                livro.PDF = livroAtual.PDF;
             }
 
             return View(livro);
         }
+
 
         public async Task<IActionResult> Details(int? id)
         {

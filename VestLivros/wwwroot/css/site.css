@@ -6,6 +6,13 @@ body {
   width: 100%;
 }
 
+.link-informacao {
+  font-weight: 800;
+  color: #e3a350;
+  margin-bottom: 7px;
+  margin-top: 5px;
+}
+
 .navbar {
   background-color: #323659;
   color: #e7ba80;

@@ -12,7 +12,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -37,15 +37,31 @@
             </div>
             <div class="mb-3">
                 <label asp-for="FaculdadeId" class="control-label">Faculdade</label>
-                <select asp-for="FaculdadeId" class="form-control">
-                    <option value="1">Unicamp</option>
-                    <option value="2">USP</option>
+                <select asp-for="FaculdadeId" class="form-control" asp-items="ViewBag.Faculdades">
+                    <option value="">Selecione uma faculdade</option>
                 </select>
                 <span asp-validation-for="FaculdadeId" class="text-danger"></span>
             </div>
+            <div class="form-group mb-3">
+                <label>Anos do Vestibular</label>
+                <select name="anosSelecionados" class="form-control" multiple size="5" asp-items="ViewBag.Anos">
+                </select>
+                <small class="text-muted">Segure CTRL (ou CMD no Mac) para selecionar vários anos</small>
+            </div>
             <div class="mb-3">
                 <label class="control-label">Arquivo PDF</label>
-                <input name="pdf" type="file" class="form-control" accept=".pdf" />
+                <input name="novoPdf" type="file" class="form-control" accept=".pdf" />
+                <small class="text-muted">Selecione um novo arquivo somente se quiser trocar o PDF atual</small>
+
+                @if (!string.IsNullOrEmpty(Model.PDF))
+                {
+                    <p class="mt-2">
+                        PDF atual:
+                        <a href="@Model.PDF" target="_blank" class="botao btn btn-sm btn-success">
+                            Abrir PDF
+                        </a>
+                    </p>
+                }
             </div>
             <div class="form-group mb-3">
                 <label asp-for="ArquivoFoto" class="control-label">Imagem Atual</label><br />
@@ -63,13 +79,24 @@
                 <input name="novaImagem" type="file" class="form-control" accept=".jpg,.png,.jpeg,.gif" />
                 <small class="text-muted">Selecione apenas se quiser trocar a imagem atual!!</small>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Save" class="botao btn btn-primary" />
+                <label asp-for="Link" class="control-label">Link do Livro (opcional)</label>
+                <input asp-for="Link" class="form-control" placeholder="https://exemplo.com/livro" />
+                <span asp-validation-for="Link" class="text-danger"></span>
+
+                @if (!string.IsNullOrEmpty(Model.Link))
+                {
+                    <p class="mt-2">
+                        Link atual:
+                        <a href="@Model.Link" target="_blank" class="botao btn btn-sm">Abrir Link</a>
+                    </p>
+                }
+            </div>
+            <div>
+                <input type="submit" value="Salvar" class="botao btn" /> |
+                <a class="botao btn" asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>

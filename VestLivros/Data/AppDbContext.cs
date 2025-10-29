@@ -33,7 +33,17 @@ public class AppDbContext : IdentityDbContext<Usuario>
         #endregion
 
         builder.Entity<LivroVestibular>()
-            .HasKey(ri => new { ri.VestibularId, ri.LivroId, ri.FaculdadeId });
+            .HasKey(ri => new { ri.VestibularId, ri.LivroId });
+
+            builder.Entity<LivroVestibular>()
+                .HasOne(lv => lv.Livro)
+                .WithMany(l => l.Vestibulares)
+                .HasForeignKey(lv => lv.LivroId);
+
+            builder.Entity<LivroVestibular>()
+                .HasOne(lv => lv.Vestibular)
+                .WithMany(v => v.Livros)
+                .HasForeignKey(lv => lv.VestibularId);
     }
-    
+
 }

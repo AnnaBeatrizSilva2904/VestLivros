@@ -19,6 +19,9 @@ public class Livro
     [Required]
     [StringLength(3000)]
     public string Resumo { get; set; }
+    
+    [StringLength(3000)]
+    public string Link { get; set; }
 
     [Required]
     [StringLength(80000, ErrorMessage = "A análise crítica é obrigatória!")]
@@ -35,7 +38,6 @@ public class Livro
     [ForeignKey("Faculdade")]
     public int? FaculdadeId { get; set; }
     public Faculdade? Faculdade { get; set; }
-
-
+    
     public List<LivroVestibular> Vestibulares { get; set; }
 }

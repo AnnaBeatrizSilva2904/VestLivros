@@ -12,4 +12,6 @@ public class Vestibular
 
     [Required]
     public string Ano { get; set; }
+
+    public List<LivroVestibular> Livros { get; set; } = new();
 }

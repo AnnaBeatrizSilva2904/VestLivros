@@ -47,6 +47,13 @@
                 <span asp-validation-for="FaculdadeId" class="text-danger"></span>
             </div>
 
+            <div class="form-group mb-3">
+                <label>Anos do Vestibular</label>
+                <select name="anosSelecionados" class="form-control" multiple size="5" asp-items="ViewBag.Anos">
+                </select>
+                <small class="text-muted">Segure CTRL (ou CMD no Mac) para selecionar vários anos</small>
+            </div>
+
             <div class="mb-3">
                 <label class="control-label">Arquivo PDF</label>
                 <input name="pdf" type="file" class="form-control" accept=".pdf" />
@@ -56,6 +63,12 @@
                 <label asp-for="ArquivoFoto" class="control-label">Imagem do Livro</label><br />
                 <img id="Preview" class="mb-2" style="max-height:150px; display:block;" />
                 <input name="arquivo" type="file" class="form-control" accept=".jpg,.png,.jpeg,.gif" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Link" class="control-label">Link do Livro (opcional)</label>
+                <input asp-for="Link" class="form-control" placeholder="https://exemplo.com/livro" />
+                <span asp-validation-for="Link" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">

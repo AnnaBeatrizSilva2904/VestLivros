@@ -8,7 +8,10 @@
 <div class="card mb-3">
     <div class="row g-0">
         <div class="imagem col-md-4">
-            <img src="@Model.ArquivoFoto" class="imagem-livro img-fluid" alt="...">
+            <a href="@Model.Link" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
+                <img src="@Model.ArquivoFoto" class="imagem-livro img-fluid rounded shadow-sm" alt="@Model.Nome" style="cursor: pointer;">
+            </a>
+            <p class="link-informacao">Clique na imagem para mais informações</p>
             <button type="button" class="botao-acessar btn btn-primary">
                 <i class="bi bi-mortarboard"></i>
                 @(Model.Faculdade != null ? Model.Faculdade.FaculdadeNome : "Sem faculdade vinculada")
